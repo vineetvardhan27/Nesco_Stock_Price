@@ -112,8 +112,9 @@ if df is not None and not df.empty:
     pred_price_scaled = model.predict(X_test)
     pred_price = scaler.inverse_transform(pred_price_scaled)
     
-    current_price = df['Close'].iloc[-1]
-    predicted_price = pred_price[0][0]
+    # Convert to simple float to avoid formatting errors
+    current_price = float(df['Close'].iloc[-1])
+    predicted_price = float(pred_price[0][0])
     
     # Display Metrics
     col1, col2, col3 = st.columns(3)
